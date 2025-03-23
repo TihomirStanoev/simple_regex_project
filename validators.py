@@ -2,40 +2,29 @@ from regex import RegEx
 
 
 class PasswordValidator:
-    def __init__(self, password):
-        self.password = password
-        self.pass_len = 8
-        self.strong_password = {
+    def __init__(self):
+        self.criteria = {
             'Be at least 8 characters long': False,
             'Contain one uppercase letter': False,
             'Contain one number': False,
             'Contain one special character (@$!%*?&)': False
         }
 
-    def validator(self):
+    def validator(self, password):
 
-        is_valid = False
-        criteria = RegEx.password.findall(self.password)
+        self.criteria['Be at least 8 characters long'] = RegEx.is_eight_char.search(password)
+        self.criteria['Contain one uppercase letter'] =  RegEx.is_uppercase.search(password)
+        self.criteria['Contain one number'] = RegEx.is_number.search(password)
+        self.criteria['Contain one special character (@$!%*?&)'] = RegEx.is_special.search(password)
 
-        if len(self.password) >= self.pass_len:
-            self.strong_password['Be at least 8 characters long'] = True
-
-        for uppercase, number, special, char in criteria:
-            if uppercase:
-                self.strong_password['Contain one uppercase letter'] = True
-                continue
-            if number:
-                self.strong_password['Contain one number'] = True
-                continue
-            if special:
-                self.strong_password['Contain one special character (@$!%*?&)'] = True
-                continue
+        return all(self.criteria.values())
 
 
+    def reset_dict(self):
+        for crit in self.criteria:
+            self.criteria[crit] = False
 
-
-
-    def reset_criteria(self):
-
-        for criteria, value in self.strong_password.items():
-            self.strong_password[criteria] = False
+    def check_password(self, password):
+        is_valid = self.validator(password)
+        self.reset_dict()
+        return is_valid
