@@ -1,14 +1,35 @@
 from regex import RegEx
 
 
+class Validator:
+    """
+    Base class for creating validators.
+
+    """
+
+    def __init__(self):
+        self.criteria = dict()
+
+    def reset_dict(self):
+        for crit in self.criteria:
+            self.criteria[crit] = False
+
+    def validator(self, string):
+        pass
+
+    def check_result(self, string):
+        is_valid = self.validator(string)
+        self.reset_dict()
+        return is_valid
 
 
-class PasswordValidator:
+class PasswordValidator(Validator):
     """
     A class for validating password strength based on specific criteria.
     """
 
     def __init__(self):
+        super().__init__()
         self.criteria = {
             'Be at least 8 characters long': False,
             'Contain one uppercase letter': False,
@@ -24,9 +45,9 @@ class PasswordValidator:
 
         return all(self.criteria.values())
 
-    def reset_dict(self):
-        for crit in self.criteria:
-            self.criteria[crit] = False
+    #    def reset_dict(self):
+    #        for crit in self.criteria:
+    #            self.criteria[crit] = False
 
     def check_password(self, password: str) -> bool:
         is_valid = self.validator(password)
@@ -34,10 +55,13 @@ class PasswordValidator:
         return is_valid
 
 
+class EmailValidator(Validator):
+    """
+    A class for validating email addresses based on a regular expression.
+    """
 
-
-class EmailValidator:
     def __init__(self):
+        super().__init__()
         self.criteria = {
             'Valid Email': False
         }
@@ -46,9 +70,9 @@ class EmailValidator:
         self.criteria['Valid Email'] = RegEx.is_valid_email.search(email)
         return all(self.criteria.values())
 
-    def reset_dict(self):
-        for crit in self.criteria:
-            self.criteria[crit] = False
+    # def reset_dict(self):
+    #     for crit in self.criteria:
+    #         self.criteria[crit] = False
 
     def check_email(self, email: str) -> bool:
         is_valid = self.validator(email)
