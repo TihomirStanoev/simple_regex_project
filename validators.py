@@ -1,7 +1,13 @@
 from regex import RegEx
 
 
+
+
 class PasswordValidator:
+    """
+    A class for validating password strength based on specific criteria.
+    """
+
     def __init__(self):
         self.criteria = {
             'Be at least 8 characters long': False,
@@ -10,21 +16,41 @@ class PasswordValidator:
             'Contain one special character (@$!%*?&)': False
         }
 
-    def validator(self, password):
-
+    def validator(self, password: str) -> bool:
         self.criteria['Be at least 8 characters long'] = RegEx.is_eight_char.search(password)
-        self.criteria['Contain one uppercase letter'] =  RegEx.is_uppercase.search(password)
+        self.criteria['Contain one uppercase letter'] = RegEx.is_uppercase.search(password)
         self.criteria['Contain one number'] = RegEx.is_number.search(password)
         self.criteria['Contain one special character (@$!%*?&)'] = RegEx.is_special.search(password)
 
         return all(self.criteria.values())
 
+    def reset_dict(self):
+        for crit in self.criteria:
+            self.criteria[crit] = False
+
+    def check_password(self, password: str) -> bool:
+        is_valid = self.validator(password)
+        self.reset_dict()
+        return is_valid
+
+
+
+
+class EmailValidator:
+    def __init__(self):
+        self.criteria = {
+            'Valid Email': False
+        }
+
+    def validator(self, email):
+        self.criteria['Valid Email'] = RegEx.is_valid_email.search(email)
+        return all(self.criteria.values())
 
     def reset_dict(self):
         for crit in self.criteria:
             self.criteria[crit] = False
 
-    def check_password(self, password):
-        is_valid = self.validator(password)
+    def check_email(self, email: str) -> bool:
+        is_valid = self.validator(email)
         self.reset_dict()
         return is_valid
