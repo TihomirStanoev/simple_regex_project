@@ -4,7 +4,6 @@ from regex import RegEx
 class Validator:
     """
     Base class for creating validators.
-
     """
 
     def __init__(self):
@@ -14,10 +13,10 @@ class Validator:
         for crit in self.criteria:
             self.criteria[crit] = False
 
-    def validator(self, string):
+    def validator(self, string: str):
         pass
 
-    def check_result(self, string):
+    def check_result(self, string: str):
         is_valid = self.validator(string)
         self.reset_dict()
         return is_valid
@@ -45,9 +44,7 @@ class PasswordValidator(Validator):
 
         return all(self.criteria.values())
 
-    #    def reset_dict(self):
-    #        for crit in self.criteria:
-    #            self.criteria[crit] = False
+
 
     def check_password(self, password: str) -> bool:
         is_valid = self.validator(password)
@@ -66,15 +63,14 @@ class EmailValidator(Validator):
             'Valid Email': False
         }
 
-    def validator(self, email):
+    def validator(self, email: str) -> bool:
         self.criteria['Valid Email'] = RegEx.is_valid_email.search(email)
         return all(self.criteria.values())
 
-    # def reset_dict(self):
-    #     for crit in self.criteria:
-    #         self.criteria[crit] = False
+
 
     def check_email(self, email: str) -> bool:
         is_valid = self.validator(email)
         self.reset_dict()
         return is_valid
+
