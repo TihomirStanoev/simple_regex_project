@@ -1,5 +1,5 @@
 from regex import RegEx
-
+import re
 
 class Extractor:
     """
@@ -22,4 +22,21 @@ class Extractor:
         return [phone[0] for phone in phones]
 
 
+
+class StringProcessor(Extractor):
+    """
+    A class for processing and manipulating strings, extending the Extractor class.
+
+    This class provides methods for text manipulation, such as replacing words
+    using regular expressions with optional flags for case-insensitivity or verbose mode.
+    """
+
+    def __init__(self):
+        super().__init__()
+
+
+    def replace_word(self, old_word, new_word, rex_flag):
+        rex_flag = re.I if rex_flag == '1' else re.X
+        return re.sub(rf'{old_word}', new_word, self.text, flags=rex_flag)
+        
 

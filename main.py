@@ -1,4 +1,4 @@
-from manipulate_text import Extractor
+from manipulate_text import Extractor, StringProcessor
 from validators import PasswordValidator, EmailValidator
 
 
@@ -11,16 +11,18 @@ def main():
     password_validator = PasswordValidator()
     email_validator = EmailValidator()
     extractor = Extractor()
+    string_processor = StringProcessor()
     result = ''
 
-    print('Validate & Extract Data with Python REGEX!')
+    print('🔍🐍 Validate & Extract Data with Python REGEX!')
     while True:
 
-        print('1. Password validator')
-        print('2. Email validator')
-        print('3. Find email')
-        print('4. Find phone')
-        print('5. Extract emails and phones')
+        print('1. 🔒 Password validator')
+        print('2. 📧 Email validator')
+        print('3. 🔎 Find email')
+        print('4. 📞 Find phone')
+        print('5. 📋 Extract emails and phones')
+        print('6. 🔄 Replace text')
 
         choose = input('Your choose: ')
         if choose == '1':
@@ -42,6 +44,13 @@ def main():
         elif choose == '5':
             extractor.text = input('Enter text: ')
             result = extractor.extract_phone_and_email()
+
+        elif choose == '6':
+            string_processor.text = input('Enter text: ')
+            old_text = input("Word for repalce: ")
+            new_text = input("New word: ")
+            case_type = input('*For case-insensitive, press 1: ')
+            result = string_processor.replace_word(old_text,new_text,case_type)  
 
         else:
             break

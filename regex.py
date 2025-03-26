@@ -18,3 +18,4 @@ class RegEx:
     # Extractor
     extract_email = re.compile(r'\b(([^\.\-\s][a-z0-9\-\_\.]+[^\.\-])@([^\.\-][a-z0-9\-]+[^\.\-])(\.[a-z]{2,8}(\.[a-z]{2,8})?))\b')
     extract_phone = re.compile(r'(\b(\(\d{,3}\))|(\+|0)\d+(\s|\-)\d+\4\d+\4?(\d+)?[^\ ]\b)')
+    
