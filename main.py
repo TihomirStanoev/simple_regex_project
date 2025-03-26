@@ -12,7 +12,7 @@ def main():
     email_validator = EmailValidator()
     extractor = Extractor()
     string_processor = StringProcessor()
-    result = ''
+
 
     print('🔍🐍 Validate & Extract Data with Python REGEX!')
     while True:
@@ -25,6 +25,8 @@ def main():
         print('6. 🔄 Replace text')
 
         choose = input('Your choose: ')
+        result = ''
+
         if choose == '1':
             password = input('Your password:')
             result = validator_result(password, password_validator)
@@ -47,9 +49,9 @@ def main():
 
         elif choose == '6':
             string_processor.text = input('Enter text: ')
-            old_text = input("Word for repalce: ")
+            old_text = input("Word for replace: ")
             new_text = input("New word: ")
-            case_type = input('*For case-insensitive, press 1: ')
+            case_type = input('*"1" for case-insensitive: ')
             result = string_processor.replace_word(old_text,new_text,case_type)  
 
         else:
