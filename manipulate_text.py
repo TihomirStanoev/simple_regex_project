@@ -1,10 +1,12 @@
 from regex import RegEx
 import re
 
+
 class Extractor:
     """
     A class for extracting email addresses and phone numbers from a given text.
     """
+
     def __init__(self, text=''):
         self.text = text
 
@@ -22,7 +24,6 @@ class Extractor:
         return [phone[0] for phone in phones]
 
 
-
 class StringProcessor(Extractor):
     """
     A class for processing and manipulating strings, extending the Extractor class.
@@ -34,9 +35,6 @@ class StringProcessor(Extractor):
     def __init__(self):
         super().__init__()
 
-
     def replace_word(self, old_word, new_word, rex_flag):
         rex_flag = re.I if rex_flag == '1' else re.X
         return re.sub(rf'{old_word}', new_word, self.text, flags=rex_flag)
-        
-
