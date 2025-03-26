@@ -7,12 +7,31 @@ Simple Python regex project for password validation, email extraction, and phone
 
 ## ✨Features
 
-* **StringProcessor Class:**
-    * Provides methods for replacing text using regular expressions.
-    * Supports case-insensitive and verbose modes.
-    * Simple class for basic text manipulation.
-* **Example Usage:**
-    * Demonstrates how to use the `StringProcessor` class.
+
+* **Interactive Command-Line Interface:**
+    * Presents a menu-driven interface for easy interaction.
+    * Allows users to choose between password validation, email validation, email extraction, phone number extraction, combined email and phone extraction, and text replacement.
+* **Password Validation:**
+    * Utilizes the `PasswordValidator` class to check password strength against predefined criteria.
+    * Validates passwords for minimum length, uppercase letters, numbers, and special characters.
+* **Email Validation:**
+    * Uses the `EmailValidator` class to validate email addresses against a comprehensive regular expression.
+* **Email and Phone Extraction:**
+    * Employs the `Extractor` class to extract email addresses and phone numbers from user-provided text.
+    * Provides separate methods for extracting emails and phone numbers, as well as a combined method.
+* **Text Replacement:**
+    * Offers the `StringProcessor` class for replacing text within a string using regular expressions.
+    * Allows the user to select between case sensitive, and insensitive modes.
+* **Regular Expression Utility Class (`RegEx`):**
+    * Contains pre-defined regular expressions for password validation, email validation, and data extraction.
+    * Centralizes regular expression patterns for easy maintenance and reusability.
+* **Modular Design:**
+    * Organized into separate modules (`manipulate_text.py`, `validators.py`, `regex.py`) for clear separation of concerns.
+    * Classes are designed for easy extension and modification.
+* **Object-Oriented Implementation:**
+    * Uses classes and objects to represent validators and text processors.
+    * Enhances code organization and readability.
+
 
 ## 🛠️ Usage
 
